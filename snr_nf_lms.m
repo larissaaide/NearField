@@ -66,8 +66,13 @@ e = complex(zeros(nIterMax,1),0);
     end
 
 w_lms = conj(w); 
-y_lms = w_lms.*A; 
+y_lms = abs(w_lms.*A); 
+y_lms_vetor = y_lms(:,1);
+[aa,bb] = max(y_lms_vetor);
 
+valorestimado = idx(bb,:);
+posestimada = idx(bb,1)*[cos(idx(bb,2)*pi/180),sin(idx(bb,2)*pi/180)];
+erro_pos = norm(posestimada-posuser); 
 
 
 %% Funções 
